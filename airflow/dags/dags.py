@@ -16,10 +16,33 @@ dag_directories = [os.path.join(dag_parent_dir, name) for name in os.listdir(dag
 ## DAG Generation ##
 ####################
 
+# TODO: move out of this file
+def _ref(name):
+    import os
+    from tidypal import get_sql_engine
+
+    warehouse_path = os.environ["PIPELINE_WAREHOUSE_URI"]
+    engine = get_sql_engine()
+
+    if engine.name == "duckdb":
+        return f"""read_parquet("{warehouse_path}/{name}.parquet")"""
+
+    else:
+        return name
+
+
 for dag_directory in dag_directories:
     dag_id = os.path.basename(dag_directory)
-    globals()[dag_id] = create_dag(dag_directory,
-                                   tags = ['default', 'tags'],
-                                   task_group_defaults={"tooltip": "this is a default tooltip"},
-                                   wait_for_defaults={"retries": 10, "check_existence": True},
-                                   latest_only=False)
+    globals()[dag_id] = create_dag(
+        dag_directory,
+        tags = ['default', 'tags'],
+        task_group_defaults={"tooltip": "this is a default tooltip"},
+        wait_for_defaults={
+            "retries": 10,
+            "check_existence": True
+        },
+        latest_only=False,
+        user_defined_macros={
+            "ref": _ref
+        }
+    )

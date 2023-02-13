@@ -1,7 +1,0 @@
----
-operator: local.rmd_operator.RmdOperator
----
-
-```{r}
-print(Sys.getenv()["AIRFLOW__CORE__SQL_ALCHEMY_CONN"])
-```

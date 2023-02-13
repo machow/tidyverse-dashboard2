@@ -21,6 +21,5 @@ default_args:
 #   wait_for_downstream: false
 #   sla: !timedelta 'hours: 2'
 #   trigger_rule: all_success
-latest_only: true
 doc_md: |-
   This is the github extractor.

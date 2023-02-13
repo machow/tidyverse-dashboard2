@@ -14,6 +14,7 @@ default_args:
     email_on_retry: false
     retries: 1
     retry_delay: !timedelta 'minutes: 5'
+latest_only: true
 concurrency: 1
 #   queue: bash_queue
 #   pool: backfill
