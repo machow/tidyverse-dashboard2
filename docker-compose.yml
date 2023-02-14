@@ -12,6 +12,8 @@ services:
         build:
             context: .
         environment: &airflow_env
+          - AIRFLOW__CORE__FERNET_KEY=${AIRFLOW__CORE__FERNET_KEY}
+          - AIRFLOW__WEBSERVER__SECRET_KEY=${AIRFLOW__WEBSERVER__SECRET_KEY}
           - AIRFLOW__CORE__EXECUTE_TASKS_NEW_PYTHON_INTERPRETER=True
           - AIRFLOW__CORE__LAZY_LOAD_PLUGINS=False
           - AIRFLOW__WEBSERVER__EXPOSE_CONFIG=True
