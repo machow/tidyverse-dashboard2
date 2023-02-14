@@ -19,6 +19,8 @@ services:
           - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql://gusty:demo@postgres:5432/airflow
           - AIRFLOW__CORE__FERNET_KEY=${AIRFLOW__CORE__FERNET_KEY}
           - AIRFLOW__WEBSERVER__SECRET_KEY=${AIRFLOW_WEBSERVER__SECRET_KEY}
+          - AIRFLOW_USER=${AIRFLOW_USER}
+          - AIRFLOW_PASSWORD=${AIRFLOW_PASSWORD}
           - EXTRACTOR_GITHUB_TOKEN=${EXTRACTOR_GITHUB_TOKEN}
           - CONNECT_API_KEY=${CONNECT_API_KEY}
           - CONNECT_SERVER=${CONNECT_SERVER}
@@ -38,8 +40,8 @@ services:
 
                 # Create default user
                 airflow users create \
-                  --username gusty \
-                  --password demo \
+                  --username $AIRFLOW_USER \
+                  --password $AIRFLOW_PASSWORD \
                   --email gusty@gusty.com \
                   --firstname Gusty \
                   --lastname User \
@@ -75,6 +77,7 @@ services:
         environment:
           - PIPELINE_BUCKET=/home/jovyan/bucket
           - PIPELINE_WAREHOUSE_URI=/home/jovyan/bucket/_warehouse
+          - JUPYTERLAB_TOKEN=${JUPYTERLAB_TOKEN}
         volumes:
           - ${PWD}/analyses:/home/jovyan/analyses
           - ${PWD}/airflow:/home/jovyan/airflow
