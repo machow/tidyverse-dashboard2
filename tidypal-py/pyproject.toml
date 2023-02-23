@@ -3,7 +3,6 @@ requires = ["setuptools>=45", "wheel", "setuptools_scm>=6.2"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
-where = ["plugins"]
 include = ["tidypal"]
 namespaces = true
 
@@ -15,6 +14,13 @@ authors = [
 description = ""
 requires-python = ">=3.8"
 dependencies = [
+  "plum-dispatch",
+  "fsspec",
+  "gcsfs",
+  "pandas",
+  "sqlalchemy",
+  "sqlalchemy-bigquery",
+  "siuba",
 ]
 version = "0.0.1"
 
