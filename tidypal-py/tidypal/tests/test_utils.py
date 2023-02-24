@@ -1,9 +1,13 @@
 import pytest
 import pandas as pd
+import tidypal.data as dc
 
 from pathlib import Path
 
-from tidypal.utils import copy_to_warehouse
+from tidypal.utils import copy_to_warehouse, file_to_warehouse
+from importlib_resources import files
+
+FILES = files("tidypal") / "tests/example_files"
 
 
 @pytest.mark.parametrize("tbl", [
@@ -11,7 +15,7 @@ from tidypal.utils import copy_to_warehouse
     "SELECT 1 AS x",
 ])
 def test_copy_to_warehouse(tbl, backend):
-    copy_to_warehouse(tbl, name="test_copy_to_warehouse", engine=backend.engine)
+    final_name = copy_to_warehouse(tbl, "test_copy_to_warehouse", backend.engine)
 
 
 def test_copy_to_warehouse_diskhouse(diskhouse):
@@ -26,5 +30,13 @@ def test_copy_to_warehouse_diskhouse(diskhouse):
     assert df.equals(res)
 
 
-# def test_file_to_warehouse():
-#     ...
+@pytest.mark.parametrize("fname", [
+    dc.ParquetFile("data.parquet", "gs://tidyverse-dashboard/tests/tidypal/tests/example_files"),
+    dc.JsonlFile("data.jsonl", "gs://tidyverse-dashboard/tests/tidypal/tests/example_files"),
+])
+def test_file_to_warehouse(fname, backend):
+    if backend.name == "duckdb":
+        pytest.xfail()
+
+    file_to_warehouse(fname, "test_file_to_warehouse", backend.engine)
+

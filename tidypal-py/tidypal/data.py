@@ -11,8 +11,9 @@ class File:
     _registry = {}
     suffix = None
 
-    def __init__(self, name: str):
+    def __init__(self, name: str, parent: "str | None" = None):
         self.name = name
+        self.parent = parent
 
     def __init_subclass__(cls, *args, **kwargs):
         super().__init_subclass__(*args, **kwargs)
@@ -55,11 +56,13 @@ class SqlEngine(Engine):
         return NotImplemented
 
 
-class Duckdb:
+@parametric(runtime_type_of=True)
+class SqlEngineDuckdb(SqlEngine):
     engine_name = "duckdb"
 
 
-class Bigquery:
+@parametric(runtime_type_of=True)
+class SqlEngineBigquery(SqlEngine):
     engine_name = "bigquery"
 
 
@@ -75,13 +78,13 @@ class DuckdbDiskhouse:
 # type_of (essentially holy traits?) ==========================================
 
 @type_of.dispatch
-def type_of(x: Engine):
+def type_of_ext(x: Engine):
 
     print("checking type")
     if x.name == "duckdb":
-        return SqlEngine[Duckdb]
+        return SqlEngineDuckdb
     elif x.name == "bigquery":
-        return SqlEngine[Bigquery]
+        return SqlEngineBigquery
 
     raise TypeError(f"Unsupported sqlalchemy engine name: {x.name}")
 

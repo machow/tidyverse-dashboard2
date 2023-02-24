@@ -12,7 +12,7 @@ params_backend = [
     #pytest.param(lambda: SqlBackend("sqlite"), id = "sqlite", marks=pytest.mark.sqlite),
     pytest.param(lambda: BigqueryBackend("bigquery"), id = "bigquery", marks=pytest.mark.bigquery),
     pytest.param(lambda: SqlBackend("duckdb"), id = "duckdb", marks=pytest.mark.duckdb),
-    pytest.param("diskhouse", id="diskhouse", marks=pytest.mark.diskhouse),
+    #pytest.param("diskhouse", id="diskhouse", marks=pytest.mark.diskhouse),
     #pytest.param(lambda: CloudBackend("snowflake"), id = "snowflake", marks=pytest.mark.snowflake),
     ]
 
@@ -28,7 +28,7 @@ def backend(request):
         yield backend
 
 
-@pytest.fixture(scope = "function")
+@pytest.fixture(scope = "session")
 def diskhouse():
     from tidypal.data import DuckdbDiskhouse
     from sqlalchemy import create_engine
