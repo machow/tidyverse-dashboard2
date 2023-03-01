@@ -1,0 +1,11 @@
+airflow-connect==0.0.1
+gh-reader==0.0.2
+gusty==0.16.0
+siuba==0.4.2
+duckdb_engine==0.6.8
+jupytext==1.14.4
+fsspec==2023.1.0
+gcsfs==2023.1.0
+rsconnect-python==1.14.1
+plum-dispatch==1.7.4
+dbpal==0.0.2

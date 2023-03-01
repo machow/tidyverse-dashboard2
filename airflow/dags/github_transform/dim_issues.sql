@@ -1,6 +1,6 @@
 ---
 operator: operators.SqlToWarehouseOperator
-dst_table_name: dim_issues
+schema: github_extract
 ---
 
 SELECT *, FALSE AS is_pull_request FROM {{ ref("stg_issues") }}

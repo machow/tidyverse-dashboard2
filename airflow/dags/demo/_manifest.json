@@ -4,7 +4,7 @@
   "platform": "4.1.2",
   "metadata": {
     "appmode": "rmd-static",
-    "primary_rmd": "mtcars_transform.Rmd",
+    "primary_rmd": "report_rmd.Rmd",
     "primary_html": null,
     "content_category": null,
     "has_parameters": false
@@ -12,7 +12,7 @@
   "packages": {
     "R6": {
       "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com/",
+      "Repository": "https://cran.rstudio.com",
       "description": {
         "Package": "R6",
         "Title": "Encapsulated Classes with Reference Semantics",
@@ -36,7 +36,7 @@
     },
     "base64enc": {
       "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com/",
+      "Repository": "https://cran.rstudio.com",
       "description": {
         "Package": "base64enc",
         "Version": "0.1-3",
@@ -57,7 +57,7 @@
     },
     "bslib": {
       "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com/",
+      "Repository": "https://cran.rstudio.com",
       "description": {
         "Package": "bslib",
         "Title": "Custom 'Bootstrap' 'Sass' Themes for 'shiny' and 'rmarkdown'",
@@ -86,7 +86,7 @@
     },
     "digest": {
       "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com/",
+      "Repository": "https://cran.rstudio.com",
       "description": {
         "Package": "digest",
         "Author": "Dirk Eddelbuettel <edd@debian.org> with contributions \n by Antoine Lucas, Jarek Tuszynski, Henrik Bengtsson, Simon Urbanek,\n Mario Frasca, Bryan Lewis, Murray Stokely, Hannes Muehleisen,\n Duncan Murdoch, Jim Hester, Wush Wu, Qiang Kou, Thierry Onkelinx, \n Michel Lang, Viliam Simko, Kurt Hornik, Radford Neal, Kendon Bell,\n Matthew de Queljoe, Ion Suruceanu, Bill Denney, Dirk Schumacher,\n and Winston Chang.",
@@ -111,7 +111,7 @@
     },
     "evaluate": {
       "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com/",
+      "Repository": "https://cran.rstudio.com",
       "description": {
         "Package": "evaluate",
         "Type": "Package",
@@ -138,7 +138,7 @@
     },
     "fastmap": {
       "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com/",
+      "Repository": "https://cran.rstudio.com",
       "description": {
         "Package": "fastmap",
         "Title": "Fast Data Structures",
@@ -163,7 +163,7 @@
     },
     "fs": {
       "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com/",
+      "Repository": "https://cran.rstudio.com",
       "description": {
         "Package": "fs",
         "Title": "Cross-Platform File System Operations Based on 'libuv'",
@@ -194,7 +194,7 @@
     },
     "glue": {
       "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com/",
+      "Repository": "https://cran.rstudio.com",
       "description": {
         "Package": "glue",
         "Title": "Interpreted String Literals",
@@ -224,7 +224,7 @@
     },
     "highr": {
       "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com/",
+      "Repository": "https://cran.rstudio.com",
       "description": {
         "Package": "highr",
         "Type": "Package",
@@ -251,7 +251,7 @@
     },
     "htmltools": {
       "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com/",
+      "Repository": "https://cran.rstudio.com",
       "description": {
         "Package": "htmltools",
         "Type": "Package",
@@ -280,7 +280,7 @@
     },
     "jquerylib": {
       "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com/",
+      "Repository": "https://cran.rstudio.com",
       "description": {
         "Package": "jquerylib",
         "Title": "Obtain 'jQuery' as an HTML Dependency Object",
@@ -304,7 +304,7 @@
     },
     "jsonlite": {
       "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com/",
+      "Repository": "https://cran.rstudio.com",
       "description": {
         "Package": "jsonlite",
         "Version": "1.8.0",
@@ -330,7 +330,7 @@
     },
     "knitr": {
       "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com/",
+      "Repository": "https://cran.rstudio.com",
       "description": {
         "Package": "knitr",
         "Type": "Package",
@@ -360,7 +360,7 @@
     },
     "magrittr": {
       "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com/",
+      "Repository": "https://cran.rstudio.com",
       "description": {
         "Type": "Package",
         "Package": "magrittr",
@@ -389,7 +389,7 @@
     },
     "rappdirs": {
       "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com/",
+      "Repository": "https://cran.rstudio.com",
       "description": {
         "Type": "Package",
         "Package": "rappdirs",
@@ -417,7 +417,7 @@
     },
     "rlang": {
       "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com/",
+      "Repository": "https://cran.rstudio.com",
       "description": {
         "Package": "rlang",
         "Version": "1.0.6",
@@ -449,7 +449,7 @@
     },
     "rmarkdown": {
       "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com/",
+      "Repository": "https://cran.rstudio.com",
       "description": {
         "Type": "Package",
         "Package": "rmarkdown",
@@ -479,7 +479,7 @@
     },
     "sass": {
       "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com/",
+      "Repository": "https://cran.rstudio.com",
       "description": {
         "Type": "Package",
         "Package": "sass",
@@ -508,14 +508,14 @@
     },
     "stringi": {
       "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com/",
+      "Repository": "https://cran.rstudio.com",
       "description": {
         "Package": "stringi",
-        "Version": "1.7.6",
-        "Date": "2021-11-29",
-        "Title": "Character String Processing Facilities",
-        "Description": "A collection of character string/text/natural language\n    processing tools for pattern searching (e.g., with 'Java'-like regular\n    expressions or the 'Unicode' collation algorithm), random string generation,\n    case mapping, string transliteration, concatenation, sorting, padding,\n    wrapping, Unicode normalisation, date-time formatting and parsing,\n    and many more. They are fast, consistent, convenient, and -\n    thanks to 'ICU' (International Components for Unicode) -\n    portable across all locales and platforms.",
-        "URL": "https://stringi.gagolewski.com/ https://icu.unicode.org/",
+        "Version": "1.7.12",
+        "Date": "2023-01-09",
+        "Title": "Fast and Portable Character String Processing Facilities",
+        "Description": "A collection of character string/text/natural language\n    processing tools for pattern searching (e.g., with 'Java'-like regular\n    expressions or the 'Unicode' collation algorithm), random string generation,\n    case mapping, string transliteration, concatenation, sorting, padding,\n    wrapping, Unicode normalisation, date-time formatting and parsing,\n    and many more. They are fast, consistent, convenient, and -\n    thanks to 'ICU' (International Components for Unicode) -\n    portable across all locales and platforms. Documentation about 'stringi' is\n    provided via its website at <https://stringi.gagolewski.com/> and\n    the paper by Gagolewski (2022, <doi:10.18637/jss.v103.i02>).",
+        "URL": "https://stringi.gagolewski.com/,\nhttps://github.com/gagolews/stringi, https://icu.unicode.org/",
         "BugReports": "https://github.com/gagolews/stringi/issues",
         "SystemRequirements": "C++11, ICU4C (>= 55, optional)",
         "Type": "Package",
@@ -525,19 +525,19 @@
         "License": "file LICENSE",
         "Author": "Marek Gagolewski [aut, cre, cph] (<https://orcid.org/0000-0003-0637-6028>),\n    Bartek Tartanus [ctb], and others (stringi source code);\n    Unicode, Inc. and others (ICU4C source code, Unicode Character Database)",
         "Maintainer": "Marek Gagolewski <marek@gagolewski.com>",
-        "RoxygenNote": "7.1.2",
+        "RoxygenNote": "7.2.1",
         "Encoding": "UTF-8",
         "NeedsCompilation": "yes",
-        "Packaged": "2021-11-28 23:34:08 UTC; gagolews",
+        "Packaged": "2023-01-09 07:28:38 UTC; gagolews",
         "License_is_FOSS": "yes",
         "Repository": "CRAN",
-        "Date/Publication": "2021-11-29 09:00:02 UTC",
-        "Built": "R 4.1.1; aarch64-apple-darwin20; 2021-12-02 21:56:20 UTC; unix"
+        "Date/Publication": "2023-01-11 10:10:02 UTC",
+        "Built": "R 4.1.1; aarch64-apple-darwin20; 2023-01-11 10:19:59 UTC; unix"
       }
     },
     "stringr": {
       "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com/",
+      "Repository": "https://cran.rstudio.com",
       "description": {
         "Package": "stringr",
         "Title": "Simple, Consistent Wrappers for Common String Operations",
@@ -565,7 +565,7 @@
     },
     "tinytex": {
       "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com/",
+      "Repository": "https://cran.rstudio.com",
       "description": {
         "Package": "tinytex",
         "Type": "Package",
@@ -591,7 +591,7 @@
     },
     "xfun": {
       "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com/",
+      "Repository": "https://cran.rstudio.com",
       "description": {
         "Package": "xfun",
         "Type": "Package",
@@ -618,7 +618,7 @@
     },
     "yaml": {
       "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com/",
+      "Repository": "https://cran.rstudio.com",
       "description": {
         "Package": "yaml",
         "Type": "Package",
@@ -641,10 +641,13 @@
     }
   },
   "files": {
-    "METADATA.yml": {
-      "checksum": "fd7f088900ce914b393875c09b1b6724"
+    ".manifest.json.swp": {
+      "checksum": "1b2438fb03912db8b07ba1c4cec25f1a"
     },
-    "mtcars_transform.Rmd": {
+    ".report_rmd.Rmd.swp": {
+      "checksum": "6efa04163a1cc7ac2b9e2e817493e855"
+    },
+    "report_rmd.Rmd": {
       "checksum": "f4b84e65bd32d8646b851607b930027d"
     }
   },

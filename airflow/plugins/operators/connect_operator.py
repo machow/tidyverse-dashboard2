@@ -1,63 +1,76 @@
 import os
-import shutil
-import tempfile
+import contextlib
 
-from airflow.operators.bash_operator import BashOperator
-from contextlib import contextmanager
+from airflow.models import BaseOperator
+from airflow_connect import api
+from airflow.models import Variable
 from pathlib import Path
 
-rmd_command_template = """
-Rscript -e 'rmarkdown::render("{file_path}", run_pandoc=FALSE)' || exit 1; rm -f {rendered_output}
-"""
+from pins.rsconnect.fs import RsConnectFs
 
-rsc_command_template = """
-cd 
-ls
-Rscript -e 'print(list.files()); rsconnect::writeManifest("{dir_path}", "{file_path}")'
-rsconnect deploy manifest {manifest_path}
-"""
 
-@contextmanager
-def chdir(new_dir):
-    prev = os.getcwd()
-    os.chdir(new_dir)
+# TODO: this allows us to temporarily set environment variables that will be
+# used when calling the R rsconnect package (e.g. CONNECT_SERVER), but it is
+# also very hacky.
+
+@contextlib.contextmanager
+def set_env(**kwargs):
+    """
+    Temporarily set the process environment variables.
+    """
+    old_environ = dict(os.environ)
+    for k, v in kwargs.items():
+        os.environ[k] = v
+
     try:
         yield
     finally:
-        os.chdir(prev)
+        os.environ.clear()
+        os.environ.update(old_environ)
 
 
-class ConnectOperator(BashOperator):
-    """
-    """
-    ui_color = "#75AADB"
+class ConnectOperator(BaseOperator):
 
-    # gusty gives us a file_path for free
-    def __init__(self, file_path, tempdir=True, *args, **kwargs):
+    def __init__(
+        self,
+        file_path,
+        requirements = None,
+        environment = None,
+        **kwargs
+    ):
         self.file_path = file_path
-        self.rendered_output = self.file_path.replace('.Rmd', '.knit.md')
-        self.tempdir = tempdir
+        self.environment = environment or {}
 
+        if requirements:
+            if requirements.startswith("/"):
+                dags_folder = os.environ.get(
+                    "AIRFLOW__CORE__DAGS_FOLDER",
+                    os.environ.get("DAGS_FOLDER", ".")
+                )
 
-        #command = rsc_command_template.format(file_path = self.file_path,
-        #                                  rendered_output = self.rendered_output)
-        super().__init__(bash_command = "PLACEHOLDER", *args, **kwargs)
+                self.requirements = Path(dags_folder) / requirements
+            else:
+                self.requirements = Path(file_path).parent / requirements
+
+        super().__init__(**kwargs)
 
     def execute(self, context):
-        with tempfile.TemporaryDirectory() as tmp_dir:
-            dst_fname = shutil.copy(self.file_path, tmp_dir)
+        # TODO: pins should automatically look for this variable
+        connect_server = Variable.get("connect_server")
+        connect_api_key = Variable.get("connect_api_key")
 
-            # Hack to move everything into a temporary directory
-            p_file = Path(dst_fname)
-            p_manifest = p_file.parent / "manifest.json"
+        with set_env(CONNECT_SERVER=connect_server, CONNECT_API_KEY=connect_api_key):
 
-            self.bash_command = rsc_command_template.format(
-                dir_path = str(p_file.parent),
-                file_path = p_file.name,
-                manifest_path = p_manifest,
-                rendered_output = self.rendered_output
+            fs = RsConnectFs(
+                server_url=connect_server,
+                api_key=connect_api_key,
             )
 
+            api.trigger_deploy_or_rerun(
+                fs,
+                self.file_path,
+                user_name = "michael.chow",
+                requirements_path = self.requirements,
+                environment = self.environment
+            )
 
-            with chdir(tmp_dir):
-                super().execute(context)

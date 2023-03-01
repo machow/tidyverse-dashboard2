@@ -1,7 +1,7 @@
 # ---
 # ---
 
-from tidypal.utils import copy_to_warehouse
+from dbpal.utils import copy_to_warehouse
 
 from siuba.data import mtcars
 import os

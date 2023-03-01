@@ -1,5 +1,6 @@
 ---
-operator: airflow_connect.connect_operator.ConnectOperator
+operator: operators.connect_operator.ConnectOperator
+requirements: _manifest.json
 output:
   html_document
 ---

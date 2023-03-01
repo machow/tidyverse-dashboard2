@@ -1,16 +1,24 @@
 import os
 import airflow
+
 from gusty import create_dag
+from pathlib import Path
 
 #####################
 ## DAG Directories ##
 #####################
 
 # point to your dags directory
-dag_parent_dir = os.path.join(os.environ['AIRFLOW_HOME'], "dags")
+dag_parent_dir = Path(__file__).parent
 
-# assumes any subdirectories in the dags directory are Gusty DAGs (with METADATA.yml) (excludes subdirectories like __pycache__)
-dag_directories = [os.path.join(dag_parent_dir, name) for name in os.listdir(dag_parent_dir) if os.path.isdir(os.path.join(dag_parent_dir, name)) and not name.endswith('__')]
+# assumes any subdirectories in the dags directory are Gusty DAGs (with METADATA.yml)
+# (excludes subdirectories like __pycache__)
+# copied from: https://github.com/cal-itp/data-infra/blob/main/airflow/dags/dags.py
+dag_directories = []
+for child in dag_parent_dir.iterdir():
+    if child.is_dir() and not str(child).endswith("__"):
+        dag_directories.append(str(child))
+
 
 ####################
 ## DAG Generation ##
@@ -19,7 +27,7 @@ dag_directories = [os.path.join(dag_parent_dir, name) for name in os.listdir(dag
 # TODO: move out of this file
 def _ref(name):
     import os
-    from tidypal import get_sql_engine
+    from dbpal.config import get_sql_engine
 
     warehouse_path = os.environ["PIPELINE_WAREHOUSE_URI"]
     engine = get_sql_engine()
@@ -29,6 +37,12 @@ def _ref(name):
 
     else:
         return name
+
+
+def get_var(name):
+    from airflow.models import Variable
+
+    return Variable.get(name)
 
 
 for dag_directory in dag_directories:
@@ -43,6 +57,9 @@ for dag_directory in dag_directories:
         },
         latest_only=False,
         user_defined_macros={
-            "ref": _ref
-        }
+            "ref": _ref,
+        },
+        dag_constructors={
+            "get_var": get_var
+        },
     )

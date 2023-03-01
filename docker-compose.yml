@@ -13,7 +13,7 @@ services:
             context: .
         environment: &airflow_env
           - AIRFLOW__CORE__EXECUTE_TASKS_NEW_PYTHON_INTERPRETER=True
-          - AIRFLOW__CORE__LAZY_LOAD_PLUGINS=False
+          - AIRFLOW__CORE__LAZY_LOAD_PLUGINS=True
           - AIRFLOW__WEBSERVER__EXPOSE_CONFIG=True
           - AIRFLOW__WEBSERVER__RELOAD_ON_PLUGIN_CHANGE=True
           - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql://gusty:demo@postgres:5432/airflow
@@ -60,6 +60,10 @@ services:
         volumes:
             - ${PWD}/airflow:/usr/local/airflow
             - ${PWD}/bucket:/usr/local/bucket
+            # include our internal library, tidypal, into the plugins folder,
+            # so that it reloads on change.
+            - ${PWD}/tidypal-py/tidypal:/usr/local/airflow/plugins/tidypal
+              #- $HOME/.config/gcloud:/home/airflow/.config/gcloud
         ports:
             - "8080:8080"
         networks:
@@ -71,7 +75,9 @@ services:
             - "8090:8090"
         command: >
           /bin/bash -c "
-              python -m pip install -e airflow
+              # install tidypal
+              python -m pip install -e _tidypal
+              # run jupyterlab
               jupyter lab --port 8090 --LabApp.token=''
           "
         environment:
@@ -80,7 +86,7 @@ services:
           - JUPYTERLAB_TOKEN=${JUPYTERLAB_TOKEN}
         volumes:
           - ${PWD}/analyses:/home/jovyan/analyses
-          - ${PWD}/airflow:/home/jovyan/airflow
+          - ${PWD}/tidypal-py:/home/jovyan/_tidypal
           - ${PWD}/bucket:/home/jovyan/bucket
 
 networks:

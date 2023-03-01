@@ -1,18 +1,19 @@
 ---
 operator: operators.SqlToWarehouseOperator
-dst_table_name: dim_event_closed
+schema: github_extract
 ---
 
 SELECT
-    json ->> 'type' AS type,
-    json ->> 'id' AS id,
-    json ->> '$.actor.id' AS actor_id,
-    json ->> 'created_at' AS created_at,
-    json ->> '$.closable.closed' AS is_closed,
-    json ->> '$.closable.closedAt' AS closed_at,
-    json ->> '$.closable.id' AS issue_id,
-    json ->> '$.closer.id' AS closer_id,
-    json ->> '$.closer.type' AS closer_type,
-    json ->> 'stateReason' AS state_reason,
+    issue_id,
+    type,
+    JSON_EXTRACT(data, '$.id') AS id,
+    JSON_EXTRACT(data, '$.actor.id') AS actor_id,
+    JSON_EXTRACT(data, '$.created_at') AS created_at,
+    JSON_EXTRACT(data, '$.closable.closed') AS is_closed,
+    JSON_EXTRACT(data, '$.closable.closedAt') AS closed_at,
+    JSON_EXTRACT(data, '$.closable.id') AS closable_id,
+    JSON_EXTRACT(data, '$.closer.id') AS closer_id,
+    JSON_EXTRACT(data, '$.closer.type') AS closer_type,
+    JSON_EXTRACT(data, '$.stateReason') AS state_reason,
 FROM {{ ref("stg_issue_events") }}
 WHERE type = 'ClosedEvent'

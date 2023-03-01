@@ -17,8 +17,11 @@ RUN pip3 install \
     pyarrow==11.0.0 \
     jupytext==1.14.4 \
     fsspec==2023.1.0 \
+    gcsfs==2023.1.0 \
     git+https://github.com/rstudio/pins-python.git@d6b31437bf7edb7a99e5e9459a99d073e4e0ae89 \
-    rsconnect-python
+    rsconnect-python \
+    plum-dispatch \
+    pytest
 
 RUN pip3 install git+https://github.com/machow/dbcooper-py.git@9a5eea3efa3693bcf82804a3313289c9b8550404
 RUN pip3 install git+https://github.com/machow/gh_api.git@8e4ff69887bff58032014b0745eab4af8622a28a

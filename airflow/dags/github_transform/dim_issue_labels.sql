@@ -1,6 +1,6 @@
 ---
 operator: operators.SqlToWarehouseOperator
-dst_table_name: dim_issue_labels
+schema: github_extract
 ---
 
 SELECT
