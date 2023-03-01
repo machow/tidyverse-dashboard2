@@ -6,5 +6,5 @@ output:
 ---
 
 ```{r}
-print(Sys.getenv()["AIRFLOW__CORE__SQL_ALCHEMY_CONN"])
+print(1 + 1)
 ```
