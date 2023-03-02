@@ -70,6 +70,10 @@ def main(owner, name, start=None, api_key=None):
 
         print(f"Saving to: {dst_path}")
 
+        # similar to using shell cp -r, if the destination directory exists,
+        # then put will create a NEW directory inside it. so we need to delete
+        # the destination beforehand :/
+        fs.rm(dst_path, recursive=True)
         fs.put(
             f"{tmp_dir}/{owner}+{name}",
             dst_path,
