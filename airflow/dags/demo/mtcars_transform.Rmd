@@ -1,10 +1,20 @@
 ---
 operator: operators.connect_operator.ConnectOperator
 requirements: _manifest.json
+environment:
+  # this environment variable is retrieved from airflow variables
+  # that are set on the server
+  DEMO_VARIABLE:
+  # this environment variable is manually coded
+  ANOTHER_VARIABLE: "some_value"
 output:
   html_document
 ---
 
 ```{r}
 print(1 + 1)
+```
+
+```{r}
+Sys.getenv("DEMO_VARIABLE")
 ```

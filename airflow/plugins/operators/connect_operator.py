@@ -59,6 +59,8 @@ class ConnectOperator(BaseOperator):
         connect_server = Variable.get("connect_server")
         connect_api_key = Variable.get("connect_api_key")
 
+        env = {k: Variable.get(k) if v is None else v for k, v in self.environment.items()}
+
         with set_env(CONNECT_SERVER=connect_server, CONNECT_API_KEY=connect_api_key):
 
             fs = RsConnectFs(
@@ -71,6 +73,5 @@ class ConnectOperator(BaseOperator):
                 self.file_path,
                 user_name = "michael.chow",
                 requirements_path = self.requirements,
-                environment = self.environment
+                environment = env
             )
-
