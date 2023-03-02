@@ -1,0 +1,12 @@
+---
+operator: operators.connect_operator.ConnectOperator
+requirements: _manifest.json
+dependencies:
+  - connect_example
+output:
+  html_document
+---
+
+```{r}
+print("a second notebook")
+```
