@@ -2,7 +2,7 @@
 # python_callable: main
 # op_kwargs:
 #   owner: tidyverse
-#   #api_key: "{{ get_var('EXTRACTOR_GITHUB_TOKEN') }}"
+#   api_key: "{{ get_var('EXTRACTOR_GITHUB_TOKEN') }}"
 # python_callable_partials:
 #   blob: {name: blob}
 #   dbplyr: {name: dbplyr}
