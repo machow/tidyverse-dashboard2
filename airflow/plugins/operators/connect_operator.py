@@ -11,7 +11,8 @@ from pins.rsconnect.fs import RsConnectFs
 PIPELINE_ENV_VARS = [
     "PIPELINE_WAREHOUSE_URI",
     "PIPELINE_BUCKET",
-    "PIPELINE_USER"
+    "PIPELINE_USER",
+    "CONNECT_GCP_SA_KEY",
 ]
 
 # TODO: this allows us to temporarily set environment variables that will be
