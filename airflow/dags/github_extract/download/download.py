@@ -47,6 +47,8 @@ import os
 import tempfile
 import pendulum 
 
+from utils import previous_date
+
 
 def main(owner, name, start=None, api_key=None):
     from gh_reader.download import Downloader
