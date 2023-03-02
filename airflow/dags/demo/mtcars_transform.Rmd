@@ -16,5 +16,37 @@ print(1 + 1)
 ```
 
 ```{r}
+# automatically gets included, along with PIPELINE_WAREHOUSE_URI, and PIPELINE_USER
+Sys.getenv("PIPELINE_BUCKET")
+```
+
+```{r}
 Sys.getenv("DEMO_VARIABLE")
+```
+
+```{r}
+if (Sys.getenv("PIPELINE_USER") == "pipeline") {
+  print("CONFIGURING FOR CONNECT")
+  .configdir <- path.expand("~/.config/gcloud")
+  dir.create(.configdir, recursive=TRUE, showWarnings = FALSE)
+  
+  .fname <- file.path(.configdir, "connect_sa_key.json")
+  fcon <- file(.fname)
+  writeLines(Sys.getenv("CONNECT_GCP_SA_KEY"), fcon)
+  bigrquery::bq_auth(path = .fname)
+}
+
+library(dbplyr)
+library(dplyr)
+
+library(bigrquery)
+
+con <- dbConnect(
+  bigrquery::bigquery(),
+  dataset = "github_extract",
+  project = "tidyverse-pipeline",
+  billing = "tidyverse-pipeline"
+)
+
+DBI::dbGetQuery(con, "SELECT * FROM github_extract.stg_labels LIMIT 5")
 ```
