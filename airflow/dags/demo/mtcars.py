@@ -7,4 +7,4 @@ from siuba.data import mtcars
 import os
 print(os.environ["PIPELINE_WAREHOUSE_URI"])
 
-copy_to_warehouse(mtcars, "mtcars")
+copy_to_warehouse(mtcars, "tests.mtcars")
