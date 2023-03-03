@@ -12,7 +12,7 @@ PIPELINE_ENV_VARS = [
     "PIPELINE_WAREHOUSE_URI",
     "PIPELINE_BUCKET",
     "PIPELINE_USER",
-    "CONNECT_GCP_SA_KEY",
+    "CONNECT_GCP_API_KEY",
 ]
 
 # TODO: this allows us to temporarily set environment variables that will be

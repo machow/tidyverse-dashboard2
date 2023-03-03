@@ -32,7 +32,7 @@ if (Sys.getenv("PIPELINE_USER") == "pipeline") {
   
   .fname <- file.path(.configdir, "connect_sa_key.json")
   fcon <- file(.fname)
-  writeLines(Sys.getenv("CONNECT_GCP_SA_KEY"), fcon)
+  writeLines(Sys.getenv("CONNECT_GCP_API_KEY"), fcon, sep="")
   bigrquery::bq_auth(path = .fname)
 }
 
