@@ -25,17 +25,15 @@
 # ---
 
 
-def main(file_name, schema, task_instance = None, **kwargs):
+def main(file_name, schema, ds, **kwargs):
     import pendulum
 
     from dbpal.utils import file_to_warehouse
     from utils import previous_date
 
-    date = previous_date()
-
     table_name = "stg_" + file_name.rsplit(".")[0]
     full_name = f"{schema}.{table_name}"
-    res_table = file_to_warehouse(f"github_extract/dt={date}/*/{file_name}", full_name)
+    res_table = file_to_warehouse(f"github_extract/dt={ds}/*/{file_name}", full_name)
 
     print("Resulting table:", full_name)
 

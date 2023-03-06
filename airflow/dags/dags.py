@@ -42,7 +42,10 @@ def _ref(name):
 def get_var(name):
     from airflow.models import Variable
 
-    return Variable.get(name)
+    try:
+        return Variable.get(name)
+    except KeyError:
+        print(f"WARNING: no variable named {name} found")
 
 
 for dag_directory in dag_directories:
