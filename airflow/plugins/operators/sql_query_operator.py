@@ -49,6 +49,8 @@ class SqlQueryOperator(BaseOperator):
             ds = context["ds"]
         )
 
+        print(sql)
+
         engine = create_engine(Variable.get("PIPELINE_WAREHOUSE_URI"))
         
         if self.location:
