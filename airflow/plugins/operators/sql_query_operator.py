@@ -52,7 +52,7 @@ class SqlQueryOperator(BaseOperator):
         engine = create_engine(Variable.get("PIPELINE_WAREHOUSE_URI"))
         
         if self.location:
-            new_url = engine.url.update_query_pairs(["location", self.location])
+            new_url = engine.url.update_query_pairs([("location", self.location)])
             engine = create_engine(new_url)
 
         engine.execute(sql)
