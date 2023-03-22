@@ -14,7 +14,7 @@ multi_task_spec:
 ---
 
 EXPORT DATA OPTIONS (
-  uri = 'gs://tidyverse-pipeline/pypi-extract/project={{task_id}}/dt={{ds}}/*',
+  uri = 'gs://tidyverse-pipeline/pypi-extract/project={{task_id}}/dt={{ds}}/*.parquet',
   format = 'PARQUET',
   overwrite=true
 ) AS
