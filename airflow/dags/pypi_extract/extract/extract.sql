@@ -11,6 +11,7 @@ multi_task_spec:
   guildai: {}
   plotnine: {}
   dash: {}
+  quartodoc: {}
 
 ---
 
