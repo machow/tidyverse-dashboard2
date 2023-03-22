@@ -4,6 +4,7 @@ schema: pypi_extract
 location: US
 multi_task_spec:
   siuba: {}
+  pins: {}
 #  shiny: {}
 #  vetiver: {}
 #  htmltools: {}
