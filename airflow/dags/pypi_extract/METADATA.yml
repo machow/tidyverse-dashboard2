@@ -8,7 +8,7 @@ tags:
 default_args:
     owner: gusty
     depends_on_past: false
-    start_date: !days_ago 7
+    start_date: !days_ago 14
     email: airflow@example.com
     email_on_failure: false
     email_on_retry: false
