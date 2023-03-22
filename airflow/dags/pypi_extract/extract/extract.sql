@@ -1,6 +1,7 @@
 ---
 operator: operators.SqlQueryOperator
 schema: pypi_extract
+location: US
 multi_task_spec:
   siuba: {}
 #  shiny: {}

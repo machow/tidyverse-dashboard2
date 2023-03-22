@@ -19,11 +19,13 @@ class SqlQueryOperator(BaseOperator):
         self,
         sql: str,
         schema: "str | None" = None,
+        location: "str | None" = None,
         fields=None,
         **kwargs
     ):
         self.sql = sql
         self.schema = schema
+        self.location = location
 
         if fields is not None:
             raise NotImplementedError()
@@ -48,6 +50,11 @@ class SqlQueryOperator(BaseOperator):
         )
 
         engine = create_engine(Variable.get("PIPELINE_WAREHOUSE_URI"))
+        
+        if self.location:
+            new_url = engine.url.update_query_pairs(["location", self.location])
+            engine = create_engine(new_url)
+
         engine.execute(sql)
 
         return this
