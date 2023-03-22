@@ -49,13 +49,11 @@ class SqlQueryOperator(BaseOperator):
             ds = context["ds"]
         )
 
-        print(sql)
-
-        engine = create_engine(Variable.get("PIPELINE_WAREHOUSE_URI"))
+        engine = create_engine(Variable.get("PIPELINE_WAREHOUSE_URI"), echo=True)
         
         if self.location:
             new_url = engine.url.update_query_pairs([("location", self.location)])
-            engine = create_engine(new_url)
+            engine = create_engine(new_url, echo=True)
 
         engine.execute(sql)
 
