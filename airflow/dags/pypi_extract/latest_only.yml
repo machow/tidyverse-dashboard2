@@ -1,1 +1,1 @@
-operator: airflow.operators.latest_only.LatestOnly
+operator: airflow.operators.latest_only.LatestOnlyOperator
