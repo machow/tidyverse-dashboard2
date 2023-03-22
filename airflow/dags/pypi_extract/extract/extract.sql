@@ -8,7 +8,7 @@ multi_task_spec:
 #  vetiver: {}
 #  htmltools: {}
 #  guildai: {}
-#  plotnine: {}
+  plotnine: {}
 #  dash: {}
 
 ---
