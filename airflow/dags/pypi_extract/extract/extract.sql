@@ -22,5 +22,5 @@ EXPORT DATA OPTIONS (
 SELECT *
 FROM `bigquery-public-data.pypi.file_downloads`
 WHERE 
-    file.project = {{ task_id }}
-    AND CAST(timestamp AS DATE) = {{ ds }}
+    file.project = '{{ task_id }}'
+    AND CAST(timestamp AS DATE) = '{{ ds }}'
