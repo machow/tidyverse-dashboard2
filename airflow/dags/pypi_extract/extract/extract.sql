@@ -4,6 +4,7 @@ schema: pypi_extract
 location: US
 multi_task_spec:
   siuba: {}
+  streamlit: {}
   pins: {}
   shiny: {}
   vetiver: {}
@@ -12,6 +13,7 @@ multi_task_spec:
   plotnine: {}
   dash: {}
   quartodoc: {}
+  bentoml: {}
 
 ---
 
