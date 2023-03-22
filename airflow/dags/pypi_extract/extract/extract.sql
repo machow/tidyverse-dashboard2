@@ -5,12 +5,12 @@ location: US
 multi_task_spec:
   siuba: {}
   pins: {}
-#  shiny: {}
-#  vetiver: {}
-#  htmltools: {}
-#  guildai: {}
+  shiny: {}
+  vetiver: {}
+  htmltools: {}
+  guildai: {}
   plotnine: {}
-#  dash: {}
+  dash: {}
 
 ---
 
