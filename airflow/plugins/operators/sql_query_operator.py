@@ -43,6 +43,7 @@ class SqlQueryOperator(BaseOperator):
             self.sql,
             ref = partial(_ref, mappings=table_deps),
             this = this,
+            task_id = self.task_id,
             ds = context["ds"]
         )
 
