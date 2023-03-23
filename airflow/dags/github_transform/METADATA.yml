@@ -25,4 +25,4 @@ latest_only: true
 doc_md: |-
   This is the github extractor.
 external_dependencies:
-  github_extract: all
+  - github_extract: all
