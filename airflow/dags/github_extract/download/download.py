@@ -287,7 +287,7 @@
 #   rstudio--pool: {}
 #   rstudio--profvis: {}
 #   rstudio--promises: {}
-#   rstudio--pyshiny: {}
+#   rstudio--py-shiny: {}
 #   rstudio--r2d3: {}
 #   rstudio--reactlog: {}
 #   rstudio--remarker: {}
