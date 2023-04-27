@@ -2,6 +2,14 @@
 # python_callable: main
 # python_callable_partials: 
 #
+#   # quarto ====
+#
+#   quarto-dev--quarto-cli: {}
+#   quarto-dev--quarto-web: {}
+#   quarto-dev--quarto: {}
+#   quarto-dev--quarto-r: {}
+#   quarto-dev--quarto-actions: {}
+#
 #   # tidyverse ====
 #
 #   tidyverse--ggplot2: {}
